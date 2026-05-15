@@ -29,7 +29,6 @@ function createAuth() {
 		emailAndPassword: {
 			enabled: true,
 		},
-		socialProviders: {},
 		plugins: [nextCookies()],
 		trustedOrigins: [
 			...(process.env.BETTER_AUTH_URL ? [process.env.BETTER_AUTH_URL] : []),

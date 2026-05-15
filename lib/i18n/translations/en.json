@@ -93,6 +93,36 @@
     "readyToStart": "Ready to start?",
     "readyDescription": "Head over to the Generator to create validated micro-SaaS ideas backed by real market signals."
   },
+  "ideas": {
+    "title": "Ideas",
+    "subtitle": "Browse and filter your validated micro-SaaS ideas.",
+    "emptyTitle": "No ideas yet",
+    "emptyDescription": "Generate your first batch of ideas to see them here.",
+    "generateFirst": "Generate Ideas",
+    "monetizationLabel": "Monetization",
+    "allMonetization": "All models",
+    "subscription": "Subscription",
+    "oneTime": "One-time",
+    "usageBased": "Usage-based",
+    "hybrid": "Hybrid",
+    "confidenceLabel": "Confidence",
+    "anyConfidence": "Any confidence",
+    "highConfidence": "High (80%+)",
+    "mediumConfidence": "Medium (60%+)",
+    "lowConfidence": "All",
+    "savedLabel": "Saved",
+    "allIdeas": "All ideas",
+    "savedOnly": "Saved only"
+  },
+  "history": {
+    "title": "History",
+    "subtitle": "Past generation runs and their results.",
+    "emptyTitle": "No generations yet",
+    "emptyDescription": "Start your first idea generation to see it here.",
+    "createFirst": "Create your first generation",
+    "broadNiche": "Broad market",
+    "ideasRequested": "ideas"
+  },
   "auth": {
     "signInTitle": "Sign In",
     "signUpTitle": "Create Account",

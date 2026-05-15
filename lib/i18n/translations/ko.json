@@ -93,6 +93,36 @@
     "readyToStart": "시작할 준비가 되셨나요?",
     "readyDescription": "생성기로 이동하여 실제 시장 신호로 뒷받침된 검증된 마이크로 SaaS 아이디어를 만드세요."
   },
+  "ideas": {
+    "title": "아이디어",
+    "subtitle": "검증된 마이크로 SaaS 아이디어를 탐색하고 필터링하세요.",
+    "emptyTitle": "아직 아이디어가 없습니다",
+    "emptyDescription": "첫 번째 아이디어 배치를 생성하면 여기에 표시됩니다.",
+    "generateFirst": "아이디어 생성하기",
+    "monetizationLabel": "수익화",
+    "allMonetization": "모든 모델",
+    "subscription": "구독",
+    "oneTime": "일회성",
+    "usageBased": "사용량 기반",
+    "hybrid": "하이브리드",
+    "confidenceLabel": "신뢰도",
+    "anyConfidence": "모든 신뢰도",
+    "highConfidence": "높음 (80%+)",
+    "mediumConfidence": "중간 (60%+)",
+    "lowConfidence": "모두",
+    "savedLabel": "저장됨",
+    "allIdeas": "모든 아이디어",
+    "savedOnly": "저장된 것만"
+  },
+  "history": {
+    "title": "이력",
+    "subtitle": "과거 생성 실행 및 결과입니다.",
+    "emptyTitle": "아직 생성이 없습니다",
+    "emptyDescription": "첫 번째 아이디어 생성을 시작하면 여기에 표시됩니다.",
+    "createFirst": "첫 번째 생성 만들기",
+    "broadNiche": "광범위한 시장",
+    "ideasRequested": "개 아이디어"
+  },
   "auth": {
     "signInTitle": "로그인",
     "signUpTitle": "회원가입",

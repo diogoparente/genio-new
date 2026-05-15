@@ -93,6 +93,36 @@
     "readyToStart": "¿Listo para empezar?",
     "readyDescription": "Ve al Generador para crear ideas validadas de micro-SaaS respaldadas por señales reales de mercado."
   },
+  "ideas": {
+    "title": "Ideas",
+    "subtitle": "Explora y filtra tus ideas validadas de micro-SaaS.",
+    "emptyTitle": "Aún no hay ideas",
+    "emptyDescription": "Genera tu primer lote de ideas para verlas aquí.",
+    "generateFirst": "Generar Ideas",
+    "monetizationLabel": "Monetización",
+    "allMonetization": "Todos los modelos",
+    "subscription": "Suscripción",
+    "oneTime": "Pago único",
+    "usageBased": "Basado en uso",
+    "hybrid": "Híbrido",
+    "confidenceLabel": "Confianza",
+    "anyConfidence": "Cualquier confianza",
+    "highConfidence": "Alta (80%+)",
+    "mediumConfidence": "Media (60%+)",
+    "lowConfidence": "Todas",
+    "savedLabel": "Guardadas",
+    "allIdeas": "Todas las ideas",
+    "savedOnly": "Solo guardadas"
+  },
+  "history": {
+    "title": "Historial",
+    "subtitle": "Ejecuciones anteriores de generación y sus resultados.",
+    "emptyTitle": "Aún no hay generaciones",
+    "emptyDescription": "Inicia tu primera generación de ideas para verla aquí.",
+    "createFirst": "Crea tu primera generación",
+    "broadNiche": "Mercado amplio",
+    "ideasRequested": "ideas"
+  },
   "auth": {
     "signInTitle": "Iniciar Sesión",
     "signUpTitle": "Crear Cuenta",

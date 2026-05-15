@@ -93,6 +93,36 @@
     "readyToStart": "Prêt à commencer ?",
     "readyDescription": "Rendez-vous dans le Générateur pour créer des idées de micro-SaaS validées, soutenues par des signaux de marché réels."
   },
+  "ideas": {
+    "title": "Idées",
+    "subtitle": "Parcourez et filtrez vos idées de micro-SaaS validées.",
+    "emptyTitle": "Pas encore d'idées",
+    "emptyDescription": "Générez votre premier lot d'idées pour les voir ici.",
+    "generateFirst": "Générer des Idées",
+    "monetizationLabel": "Monétisation",
+    "allMonetization": "Tous les modèles",
+    "subscription": "Abonnement",
+    "oneTime": "Paiement unique",
+    "usageBased": "Basé sur l'usage",
+    "hybrid": "Hybride",
+    "confidenceLabel": "Confiance",
+    "anyConfidence": "Toute confiance",
+    "highConfidence": "Haute (80%+)",
+    "mediumConfidence": "Moyenne (60%+)",
+    "lowConfidence": "Toutes",
+    "savedLabel": "Sauvegardées",
+    "allIdeas": "Toutes les idées",
+    "savedOnly": "Sauvegardées seulement"
+  },
+  "history": {
+    "title": "Historique",
+    "subtitle": "Générations précédentes et leurs résultats.",
+    "emptyTitle": "Pas encore de générations",
+    "emptyDescription": "Lancez votre première génération d'idées pour la voir ici.",
+    "createFirst": "Créez votre première génération",
+    "broadNiche": "Marché large",
+    "ideasRequested": "idées"
+  },
   "auth": {
     "signInTitle": "Se Connecter",
     "signUpTitle": "Créer un Compte",

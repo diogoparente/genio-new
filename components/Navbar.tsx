@@ -4,14 +4,24 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
-const navLinks = [
-	{ href: "/dashboard", label: "Generator" },
-	{ href: "/ideas", label: "Ideas" },
-	{ href: "/history", label: "History" },
-] as const;
+interface NavbarLabels {
+	generator?: string;
+	ideas?: string;
+	history?: string;
+}
 
-export default function Navbar() {
+interface NavbarProps {
+	labels?: NavbarLabels;
+}
+
+export default function Navbar({ labels }: NavbarProps) {
 	const pathname = usePathname();
+
+	const navLinks = [
+		{ href: "/dashboard", label: labels?.generator ?? "Generator" },
+		{ href: "/dashboard/ideas", label: labels?.ideas ?? "Ideas" },
+		{ href: "/dashboard/generations", label: labels?.history ?? "History" },
+	] as const;
 
 	return (
 		<nav className="sticky top-0 z-40 bg-[var(--color-neu-surface)] shadow-neu border-b border-[var(--neu-shadow-dark)]">

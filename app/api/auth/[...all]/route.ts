@@ -28,9 +28,14 @@ function addCorsHeaders(url: URL, headers: Headers) {
 // Define a CORS wrapper
 function withCors(handler: Function) {
 	return async (req: Request) => {
-		const res = await handler(req);
-		addCorsHeaders(new URL(req.url), res.headers);
-		return res;
+		try {
+			const res = await handler(req);
+			addCorsHeaders(new URL(req.url), res.headers);
+			return res;
+		} catch (error) {
+			console.error("[auth error]", error);
+			throw error;
+		}
 	};
 }
 

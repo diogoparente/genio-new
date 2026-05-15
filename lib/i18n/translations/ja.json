@@ -93,6 +93,36 @@
     "readyToStart": "始める準備はできましたか？",
     "readyDescription": "ジェネレーターに移動して、実際の市場シグナルに裏付けられた検証済みのマイクロSaaSアイデアを作成してください。"
   },
+  "ideas": {
+    "title": "アイデア",
+    "subtitle": "検証済みのマイクロSaaSアイデアを閲覧・フィルタリングします。",
+    "emptyTitle": "まだアイデアがありません",
+    "emptyDescription": "最初のアイデアバッチを生成するとここに表示されます。",
+    "generateFirst": "アイデアを生成",
+    "monetizationLabel": "収益化",
+    "allMonetization": "すべてのモデル",
+    "subscription": "サブスクリプション",
+    "oneTime": "一回限り",
+    "usageBased": "使用量ベース",
+    "hybrid": "ハイブリッド",
+    "confidenceLabel": "信頼度",
+    "anyConfidence": "すべての信頼度",
+    "highConfidence": "高 (80%以上)",
+    "mediumConfidence": "中 (60%以上)",
+    "lowConfidence": "すべて",
+    "savedLabel": "保存済み",
+    "allIdeas": "すべてのアイデア",
+    "savedOnly": "保存済みのみ"
+  },
+  "history": {
+    "title": "履歴",
+    "subtitle": "過去の生成実行とその結果。",
+    "emptyTitle": "まだ生成がありません",
+    "emptyDescription": "最初のアイデア生成を開始するとここに表示されます。",
+    "createFirst": "最初の生成を作成",
+    "broadNiche": "幅広い市場",
+    "ideasRequested": "件のアイデア"
+  },
   "auth": {
     "signInTitle": "サインイン",
     "signUpTitle": "アカウント作成",
