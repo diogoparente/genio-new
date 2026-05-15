@@ -23,11 +23,11 @@ const dmSans = DM_Sans({
 
 export const metadata: Metadata = createMetadata({
 	title: {
-		template: "%s | Better Auth",
-		default: "Better Auth",
+		template: "%s | génio",
+		default: "génio",
 	},
-	description: "The most comprehensive authentication framework for TypeScript",
-	metadataBase: new URL("https://demo.better-auth.com"),
+	description: "Generate validated micro-SaaS ideas backed by real market signals",
+	metadataBase: new URL(process.env.BETTER_AUTH_URL || "http://localhost:3000"),
 });
 
 export default function RootLayout({
@@ -40,7 +40,7 @@ export default function RootLayout({
 			<head>
 				<link rel="icon" href="/favicon/favicon.ico" sizes="any" />
 			</head>
-			<body className={`${jakarta.variable} ${dmSans.variable} font-sans`}>
+			<body className={`${jakarta.variable} ${dmSans.variable} font-sans bg-[var(--color-neu-bg)]`}>
 				<Providers>
 					<div className="min-h-[calc(100vh-3.5rem)] mt-14 w-full relative">
 						{/* Site Header */}

@@ -4,54 +4,94 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Neumorphic base palette */
-  --background: #e0e5ec;
-  --foreground: #3d4852;
-  --card: #e0e5ec;
-  --card-foreground: #3d4852;
-  --popover: #e0e5ec;
-  --popover-foreground: #3d4852;
-  --primary: #ff9a75;
-  --primary-foreground: #ffffff;
-  --secondary: #e0e5ec;
-  --secondary-foreground: #3d4852;
-  --muted: #e0e5ec;
-  --muted-foreground: #6b7280;
-  --accent: #e0e5ec;
-  --accent-foreground: #3d4852;
-  --destructive: #ef4444;
-  --destructive-foreground: #ffffff;
-  --border: transparent;
-  --input: transparent;
-  --ring: #ff9a75;
+	/* Neumorphic base palette */
+	--background: #e0e5ec;
+	--foreground: #3d4852;
+	--card: #e0e5ec;
+	--card-foreground: #3d4852;
+	--popover: #e0e5ec;
+	--popover-foreground: #3d4852;
+	--primary: #ff9a75;
+	--primary-foreground: #ffffff;
+	--secondary: #e0e5ec;
+	--secondary-foreground: #3d4852;
+	--muted: #e0e5ec;
+	--muted-foreground: #6b7280;
+	--accent: #e0e5ec;
+	--accent-foreground: #3d4852;
+	--destructive: #ef4444;
+	--destructive-foreground: #ffffff;
+	--border: transparent;
+	--input: transparent;
+	--ring: #ff9a75;
 
-  /* Radius — neumorphic base (rounded-2xl = 16px) */
-  --radius: 1rem;
+	/* Radius — neumorphic base (rounded-2xl = 16px) */
+	--radius: 1rem;
 
-  /* Charts */
-  --chart-1: #6c63ff;
-  --chart-2: #38b2ac;
-  --chart-3: #3d4852;
-  --chart-4: #ff9a75;
-  --chart-5: #6b7280;
+	/* Charts */
+	--chart-1: #6c63ff;
+	--chart-2: #38b2ac;
+	--chart-3: #3d4852;
+	--chart-4: #ff9a75;
+	--chart-5: #6b7280;
 
-  /* Sidebar */
-  --sidebar: #e0e5ec;
-  --sidebar-foreground: #3d4852;
-  --sidebar-primary: #6c63ff;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #e0e5ec;
-  --sidebar-accent-foreground: #3d4852;
-  --sidebar-border: transparent;
-  --sidebar-ring: #6c63ff;
+	/* Sidebar */
+	--sidebar: #e0e5ec;
+	--sidebar-foreground: #3d4852;
+	--sidebar-primary: #6c63ff;
+	--sidebar-primary-foreground: #ffffff;
+	--sidebar-accent: #e0e5ec;
+	--sidebar-accent-foreground: #3d4852;
+	--sidebar-border: transparent;
+	--sidebar-ring: #6c63ff;
 
-  /* Neumorphic shadow tokens */
-  --nm-shadow-light: rgba(255, 255, 255, 0.5);
-  --nm-shadow-dark: rgb(163, 177, 198, 0.6);
-  --nm-shadow-light-hover: rgba(255, 255, 255, 0.6);
-  --nm-shadow-dark-hover: rgb(163, 177, 198, 0.7);
-  --nm-shadow-light-deep: rgba(255, 255, 255, 0.6);
-  --nm-shadow-dark-deep: rgb(163, 177, 198, 0.7);
+	/* Neumorphic shadow tokens (legacy) */
+	--nm-shadow-light: rgba(255, 255, 255, 0.5);
+	--nm-shadow-dark: rgb(163, 177, 198, 0.6);
+	--nm-shadow-light-hover: rgba(255, 255, 255, 0.6);
+	--nm-shadow-dark-hover: rgb(163, 177, 198, 0.7);
+	--nm-shadow-light-deep: rgba(255, 255, 255, 0.6);
+	--nm-shadow-dark-deep: rgb(163, 177, 198, 0.7);
+
+	/* === Neumorphic Design System === */
+	/* Brand colors */
+	--color-neu-bg: #e0e5ec;
+	--color-neu-accent: #ff9a75;
+	--color-neu-accent-secondary: #38b2ac;
+
+	/* Surface colors */
+	--color-neu-surface: #e0e5ec;
+	--color-neu-surface-raised: #e6ebf0;
+	--color-neu-surface-lowered: #d5dae1;
+
+	/* Text colors */
+	--color-neu-text-primary: #2d3436;
+	--color-neu-text-secondary: #636e72;
+	--color-neu-text-muted: #88959b;
+
+	/* Shadow colors */
+	--neu-shadow-dark: #bec3c9;
+	--neu-shadow-light: #ffffff;
+	--neu-shadow-accent-dark: #d47a5e;
+	--neu-shadow-accent-light: #ffb89e;
+	--neu-shadow-accent-secondary-dark: #2a8f8a;
+	--neu-shadow-accent-secondary-light: #4ec5c0;
+
+	/* Border radius tokens */
+	--radius-neu: 24px;
+	--radius-neu-sm: 16px;
+	--radius-neu-lg: 32px;
+	--radius-neu-xl: 40px;
+	--radius-neu-full: 9999px;
+
+	/* Spacing scale */
+	--space-neu-xs: 4px;
+	--space-neu-sm: 8px;
+	--space-neu-md: 16px;
+	--space-neu-lg: 24px;
+	--space-neu-xl: 32px;
+	--space-neu-2xl: 48px;
+	--space-neu-3xl: 64px;
 }
 
 .dark {
@@ -267,4 +307,67 @@
     transparent 1.6px
   );
   background-size: 16px 16px;
+}
+
+/* === Neumorphic Shadow Utilities === */
+
+@utility shadow-neu {
+	box-shadow: 8px 8px 16px var(--neu-shadow-dark),
+		-8px -8px 16px var(--neu-shadow-light);
+}
+
+@utility shadow-neu-sm {
+	box-shadow: 4px 4px 8px var(--neu-shadow-dark),
+		-4px -4px 8px var(--neu-shadow-light);
+}
+
+@utility shadow-neu-hover {
+	box-shadow: 12px 12px 24px var(--neu-shadow-dark),
+		-12px -12px 24px var(--neu-shadow-light);
+}
+
+@utility shadow-neu-inset {
+	box-shadow: inset 4px 4px 8px var(--neu-shadow-dark),
+		inset -4px -4px 8px var(--neu-shadow-light);
+}
+
+@utility shadow-neu-inset-deep {
+	box-shadow: inset 8px 8px 16px var(--neu-shadow-dark),
+		inset -8px -8px 16px var(--neu-shadow-light);
+}
+
+@utility shadow-neu-inset-sm {
+	box-shadow: inset 2px 2px 4px var(--neu-shadow-dark),
+		inset -2px -2px 4px var(--neu-shadow-light);
+}
+
+@utility shadow-neu-accent {
+	box-shadow: 8px 8px 16px var(--neu-shadow-accent-dark),
+		-8px -8px 16px var(--neu-shadow-accent-light);
+}
+
+@utility shadow-neu-accent-hover {
+	box-shadow: 12px 12px 24px var(--neu-shadow-accent-dark),
+		-12px -12px 24px var(--neu-shadow-accent-light);
+}
+
+@utility shadow-neu-accent-inset {
+	box-shadow: inset 4px 4px 8px var(--neu-shadow-accent-dark),
+		inset -4px -4px 8px var(--neu-shadow-accent-light);
+}
+
+/* === Accessibility: Reduced Motion === */
+
+@media (prefers-reduced-motion: reduce) {
+	.shadow-neu,
+	.shadow-neu-sm,
+	.shadow-neu-hover,
+	.shadow-neu-inset,
+	.shadow-neu-inset-deep,
+	.shadow-neu-inset-sm,
+	.shadow-neu-accent,
+	.shadow-neu-accent-hover,
+	.shadow-neu-accent-inset {
+		transition: none !important;
+	}
 }
