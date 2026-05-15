@@ -137,6 +137,29 @@
   --nm-shadow-dark-hover: rgba(0, 0, 0, 0.55);
   --nm-shadow-light-deep: rgba(255, 255, 255, 0.08);
   --nm-shadow-dark-deep: rgba(0, 0, 0, 0.55);
+
+  /* === Neumorphic Design System — Dark === */
+  --color-neu-bg: #1e2228;
+  --color-neu-accent: #ff9a75;
+  --color-neu-accent-secondary: #38b2ac;
+
+  /* Surface hierarchy (dark neumorphic) */
+  --color-neu-surface: #1e2228;
+  --color-neu-surface-raised: #242830;
+  --color-neu-surface-lowered: #181c21;
+
+  /* Text */
+  --color-neu-text-primary: #e8ecf1;
+  --color-neu-text-secondary: #9ca3af;
+  --color-neu-text-muted: #6b7280;
+
+  /* Neumorphic shadows — dark mode */
+  --neu-shadow-dark: #15181c;
+  --neu-shadow-light: #272b32;
+  --neu-shadow-accent-dark: #b85a3e;
+  --neu-shadow-accent-light: #ffb89e;
+  --neu-shadow-accent-secondary-dark: #1f7a76;
+  --neu-shadow-accent-secondary-light: #52d4cf;
 }
 
 @theme inline {
