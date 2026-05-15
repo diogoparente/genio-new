@@ -145,7 +145,7 @@ const UserCard = (props: {
 						</AlertDescription>
 					</Alert>
 				)}
-				<div className="border-l-2 px-2 w-max gap-1 flex flex-col">
+				<div className="border-l-2 border-foreground/20 px-2 w-max gap-1 flex flex-col">
 					<p className="text-xs font-medium ">Active Sessions</p>
 					{activeSessions
 						.filter((session) => session.userAgent)
@@ -157,7 +157,7 @@ const UserCard = (props: {
 
 							return (
 								<div key={session.id}>
-									<div className="flex items-center gap-2 text-sm  text-black font-medium dark:text-white">
+									<div className="flex items-center gap-2 text-sm  text-foreground font-medium">
 										{new UAParser(session.userAgent || "").getDevice().type ===
 										"mobile" ? (
 											<MobileIcon />

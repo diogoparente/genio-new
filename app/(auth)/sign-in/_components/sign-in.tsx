@@ -30,7 +30,7 @@ export default function SignIn() {
 	}, []);
 
 	return (
-		<Card className="w-full rounded-none max-h-[90vh] overflow-y-auto">
+		<Card className="w-full max-h-[90vh] overflow-y-auto">
 			<CardHeader>
 				<CardTitle className="text-lg md:text-xl">Sign In</CardTitle>
 				<CardDescription className="text-xs md:text-sm">
@@ -182,7 +182,7 @@ export default function SignIn() {
 					{/* Divider */}
 					<div className="relative">
 						<div className="absolute inset-0 flex items-center">
-							<span className="w-full border-t" />
+							<span className="w-full border-t border-[#3D4852]/15 dark:border-[#E4E8EE]/15" />
 						</div>
 						<div className="relative flex justify-center text-xs uppercase">
 							<span className="bg-background px-2 text-muted-foreground">
@@ -221,15 +221,15 @@ export default function SignIn() {
 				</div>
 			</CardContent>
 			<CardFooter>
-				<div className="flex justify-center w-full border-t pt-4">
-					<p className="text-center text-xs text-neutral-500">
+				<div className="flex justify-center w-full border-t border-[#3D4852]/15 dark:border-[#E4E8EE]/15 pt-4">
+					<p className="text-center text-xs text-muted-foreground">
 						built with{" "}
 						<Link
 							href="https://better-auth.com"
 							className="underline"
 							target="_blank"
 						>
-							<span className="dark:text-white/70 cursor-pointer">
+							<span className="dark:text-foreground/70 cursor-pointer">
 								better-auth.
 							</span>
 						</Link>

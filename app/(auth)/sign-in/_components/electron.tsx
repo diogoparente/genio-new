@@ -183,7 +183,7 @@ function ContinueAsUser({
 	return (
 		<button
 			type="button"
-			className="group flex w-full items-center gap-2.5 bg-background p-2.5 border border-border rounded-md drop-shadow-md hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors text-left disabled:pointer-events-none"
+			className="group flex w-full items-center gap-2.5 bg-background p-2.5 rounded-2xl shadow-extruded-sm hover:shadow-extruded hover:-translate-y-[1px] transition-all duration-300 ease-out text-left disabled:pointer-events-none"
 			aria-label={`Continue as ${session.user.name}`}
 			disabled={isLoading}
 			onClick={onContinue}

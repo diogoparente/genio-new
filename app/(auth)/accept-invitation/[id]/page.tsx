@@ -56,7 +56,7 @@ export default function Page() {
 	if (isLoading || isRedirecting) {
 		return (
 			<div className="min-h-[80vh] flex items-center justify-center">
-				<div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-white mask-[radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
+				<div className="absolute pointer-events-none inset-0 flex items-center justify-center bg-background mask-[radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
 				<InvitationSkeleton />
 			</div>
 		);
@@ -65,7 +65,7 @@ export default function Page() {
 	if (!invitation || error) {
 		return (
 			<div className="min-h-[80vh] flex items-center justify-center">
-				<div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-white mask-[radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
+				<div className="absolute pointer-events-none inset-0 flex items-center justify-center bg-background mask-[radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
 				<InvitationError />
 			</div>
 		);
@@ -73,7 +73,7 @@ export default function Page() {
 
 	return (
 		<div className="min-h-[80vh] flex items-center justify-center">
-			<div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-white mask-[radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
+			<div className="absolute pointer-events-none inset-0 flex items-center justify-center bg-background mask-[radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
 			{invitation && (
 				<Card className="w-full max-w-md">
 					<CardHeader>

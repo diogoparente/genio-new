@@ -18,7 +18,7 @@ export function SignUp() {
 	const params = useSearchParams();
 
 	return (
-		<Card className="rounded-md rounded-t-none w-full">
+		<Card className="rounded-t-none w-full">
 			<CardHeader>
 				<CardTitle className="text-lg md:text-xl">Sign Up</CardTitle>
 				<CardDescription className="text-xs md:text-sm">
@@ -33,15 +33,15 @@ export function SignUp() {
 				/>
 			</CardContent>
 			<CardFooter>
-				<div className="flex justify-center w-full border-t pt-4">
-					<p className="text-center text-xs text-neutral-500">
+				<div className="flex justify-center w-full border-t border-[#3D4852]/15 dark:border-[#E4E8EE]/15 pt-4">
+					<p className="text-center text-xs text-muted-foreground">
 						built with{" "}
 						<Link
 							href="https://better-auth.com"
 							className="underline"
 							target="_blank"
 						>
-							<span className="dark:text-white/70 cursor-pointer">
+							<span className="dark:text-foreground/70 cursor-pointer">
 								better-auth.
 							</span>
 						</Link>

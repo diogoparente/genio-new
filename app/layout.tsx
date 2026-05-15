@@ -1,6 +1,5 @@
 import "./globals.css";
-import { GeistMono } from "geist/font/mono";
-import { GeistSans } from "geist/font/sans";
+import { DM_Sans, Plus_Jakarta_Sans } from "next/font/google";
 import type { Metadata } from "next";
 import { BackgroundRippleEffect } from "@/components/background-ripple-effect";
 import Header from "@/components/header";
@@ -8,6 +7,19 @@ import Providers from "@/components/providers";
 import { createMetadata } from "@/lib/metadata";
 
 export const dynamic = "force-dynamic";
+
+const jakarta = Plus_Jakarta_Sans({
+	subsets: ["latin"],
+	variable: "--font-display",
+	display: "swap",
+});
+
+const dmSans = DM_Sans({
+	subsets: ["latin"],
+	variable: "--font-body",
+	display: "swap",
+	weight: ["400", "500", "700"],
+});
 
 export const metadata: Metadata = createMetadata({
 	title: {
@@ -28,7 +40,7 @@ export default function RootLayout({
 			<head>
 				<link rel="icon" href="/favicon/favicon.ico" sizes="any" />
 			</head>
-			<body className={`${GeistSans.variable} ${GeistMono.variable} font-sans`}>
+			<body className={`${jakarta.variable} ${dmSans.variable} font-sans`}>
 				<Providers>
 					<div className="min-h-[calc(100vh-3.5rem)] mt-14 w-full relative">
 						{/* Site Header */}

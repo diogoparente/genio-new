@@ -66,10 +66,10 @@ export default async function Page() {
 		<div className="min-h-[80vh] flex items-center justify-center overflow-hidden no-visible-scrollbar">
 			<main className="flex flex-col gap-4 row-start-2 items-center justify-center">
 				<div className="flex flex-col gap-1">
-					<h3 className="text-3xl sm:text-4xl text-black dark:text-white text-center">
+					<h3 className="text-3xl sm:text-4xl text-foreground text-center font-display font-extrabold tracking-tight">
 						BETTER-AUTH.
 					</h3>
-					<p className="text-center wrap-break-word text-sm md:text-base">
+					<p className="text-center wrap-break-word text-sm md:text-base text-muted-foreground">
 						Official demo to showcase{" "}
 						<a
 							href="https://better-auth.com"
@@ -83,7 +83,7 @@ export default async function Page() {
 				</div>
 				<div className="max-w-xl w-full flex flex-col gap-4">
 					<div className="flex flex-col gap-3 pt-2 flex-wrap">
-						<div className="border p-2 border-dashed bg-secondary/70">
+						<div className="shadow-inset rounded-2xl p-3">
 							<div className="text-xs flex items-center gap-2 justify-center text-muted-foreground">
 								<span className="text-center">
 									All features on this demo are implemented with Better Auth
@@ -94,7 +94,7 @@ export default async function Page() {
 						<div className="flex gap-2 justify-center flex-wrap">
 							{features.map((feature) => (
 								<a
-									className="border-b pb-1 text-muted-foreground text-xs cursor-pointer hover:text-foreground duration-150 ease-in-out transition-all hover:border-foreground flex items-center gap-1"
+									className="border-b border-muted-foreground/30 pb-1 text-muted-foreground text-xs cursor-pointer hover:text-foreground duration-150 ease-in-out transition-all hover:border-foreground flex items-center gap-1"
 									key={feature.name}
 									href={feature.link}
 								>

@@ -8,7 +8,7 @@ const Card = ({
 }: React.HTMLAttributes<HTMLDivElement>) => (
 	<div
 		className={cn(
-			"rounded-xl border bg-card text-card-foreground shadow",
+			"rounded-[32px] bg-card text-card-foreground shadow-extruded transition-all duration-300 ease-out hover:-translate-y-[2px] hover:shadow-extruded-lg",
 			className,
 		)}
 		{...props}
@@ -29,7 +29,7 @@ const CardTitle = ({
 	...props
 }: React.HTMLAttributes<HTMLHeadingElement>) => (
 	<h3
-		className={cn("font-semibold leading-none tracking-tight", className)}
+		className={cn("font-semibold leading-none tracking-tight font-display", className)}
 		{...props}
 	/>
 );

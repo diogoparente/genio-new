@@ -138,8 +138,8 @@ export function Pricing({
 							opacity: { duration: 0.5 },
 						}}
 						className={cn(
-							`rounded-sm border p-6 bg-background text-center lg:flex lg:flex-col lg:justify-center relative`,
-							plan.isPopular ? "border-border border-2" : "border-border",
+							`rounded-[32px] p-6 bg-background text-center lg:flex lg:flex-col lg:justify-center relative transition-all duration-300 ease-out`,
+							plan.isPopular ? "shadow-extruded-lg z-20" : "shadow-extruded",
 							"flex flex-col",
 							!plan.isPopular && "mt-5",
 							index === 0 || index === 2
@@ -150,7 +150,7 @@ export function Pricing({
 						)}
 					>
 						{plan.isPopular && (
-							<div className="absolute top-0 right-0 bg-primary py-0.5 px-2 rounded-bl-sm rounded-tr-sm flex items-center">
+							<div className="absolute top-0 right-0 bg-primary py-0.5 px-2 rounded-bl-xl rounded-tr-xl flex items-center">
 								<Star className="text-primary-foreground h-4 w-4 fill-current" />
 								<span className="text-primary-foreground ml-1 font-sans font-semibold">
 									Popular
