@@ -13,8 +13,8 @@ export const metadata: Metadata = createMetadata({
 		template: "%s | génio",
 		default: "génio",
 	},
-	description: "The most comprehensive authentication framework for TypeScript",
-	metadataBase: new URL("https://demo.better-auth.com"),
+	description: "Generate validated micro-SaaS ideas backed by real market signals",
+	metadataBase: new URL(process.env.BETTER_AUTH_URL || "http://localhost:3000"),
 });
 
 const jakarta = Plus_Jakarta_Sans({
@@ -24,7 +24,7 @@ const jakarta = Plus_Jakarta_Sans({
 
 const dmSans = DM_Sans({
 	subsets: ["latin"],
-	variable: "--font-body",
+	variable: "--font-sans", // Tailwind v4: maps to font-sans utility → body default
 });
 
 export default function RootLayout({
@@ -38,7 +38,7 @@ export default function RootLayout({
 				<link rel="icon" href="/favicon/favicon.ico" sizes="any" />
 			</head>
 			<body
-				className={`${jakarta.variable} ${dmSans.variable} bg-[var(--color-neu-bg)]`}
+				className={`${jakarta.variable} ${dmSans.variable} font-sans bg-[var(--color-neu-bg)]`}
 			>
 				<Providers>
 					<div className="min-h-[calc(100vh-3.5rem)] mt-14 w-full relative">
