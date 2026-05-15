@@ -229,7 +229,7 @@ export default function LandingPage() {
 					{features.map((f) => (
 						<div
 							key={f.title}
-							className="group bg-[var(--color-neu-surface)] rounded-[var(--radius-neu)] shadow-neu-sm hover:shadow-neu transition-shadow p-6"
+							className="bg-[var(--color-neu-surface)] rounded-[var(--radius-neu)] shadow-neu-sm hover:shadow-neu transition-shadow p-6"
 						>
 							<div className="w-12 h-12 flex items-center justify-center rounded-[var(--radius-neu-sm)] bg-[var(--color-neu-bg)] shadow-neu-inset-sm text-[var(--color-neu-accent-secondary)] mb-4">
 								{f.icon}
