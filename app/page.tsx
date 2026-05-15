@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { createMetadata } from "@/lib/metadata";
+import { getTranslations } from "@/lib/i18n";
 
 export const metadata: Metadata = createMetadata({
 	title: "génio — Validate micro-SaaS ideas with real market signals",
@@ -14,9 +15,6 @@ export const metadata: Metadata = createMetadata({
 
 const features = [
 	{
-		title: "Market Signals",
-		description:
-			"Tap into real-time data from search trends, social chatter, and community forums to identify growing demand before it peaks.",
 		icon: (
 			<svg
 				width="28"
@@ -34,9 +32,6 @@ const features = [
 		),
 	},
 	{
-		title: "Competitive Analysis",
-		description:
-			"See who is already in the space, what they charge, and where they fall short so you can position your product to win.",
 		icon: (
 			<svg
 				width="28"
@@ -55,9 +50,6 @@ const features = [
 		),
 	},
 	{
-		title: "Confidence Scoring",
-		description:
-			"Every idea gets a 0-100 score based on demand strength, competition saturation, and execution feasibility — so you bet on the right horse.",
 		icon: (
 			<svg
 				width="28"
@@ -76,9 +68,6 @@ const features = [
 		),
 	},
 	{
-		title: "Bootstrap Prompts",
-		description:
-			"Turn a validated idea into an MVP faster with curated AI prompts that scaffold your landing page, tech stack, and first features.",
 		icon: (
 			<svg
 				width="28"
@@ -97,80 +86,109 @@ const features = [
 ];
 
 const steps = [
-	{
-		step: "01",
-		title: "Pick a niche",
-		description:
-			"Choose from dozens of underserved markets or define your own. génio zeroes in on sectors with rising demand and thin competition.",
-	},
-	{
-		step: "02",
-		title: "Generate ideas",
-		description:
-			"génio analyses signals across multiple data sources and returns a ranked shortlist of micro-SaaS concepts with revenue estimates.",
-	},
-	{
-		step: "03",
-		title: "Build with confidence",
-		description:
-			"Pick the top-scoring idea, grab your bootstrap prompt, and start shipping — backed by data, not guesswork.",
-	},
+	{ step: "01" },
+	{ step: "02" },
+	{ step: "03" },
 ];
 
 const stats = [
-	{ value: "10k+", label: "Ideas generated" },
-	{ value: "4", label: "Live data sources" },
-	{ value: "92%", label: "Signal accuracy" },
-	{ value: "0", label: "Cost to start" },
-];
-
-const pricingFeatures = [
-	"Unlimited idea generation",
-	"Full market-signal breakdown",
-	"Confidence scoring for every idea",
-	"Competitive landscape reports",
-	"AI bootstrap prompts",
-	"Email support within 24 hours",
-];
-
-const faqs = [
-	{
-		question: "What exactly is génio?",
-		answer:
-			"génio is an idea-validation engine for micro-SaaS founders. It pulls real-world market signals — search volume, forum discussions, competitor data — and scores business ideas so you know which ones are worth building.",
-	},
-	{
-		question: "How does the confidence score work?",
-		answer:
-			"The score (0-100) combines three factors: demand strength (are people searching for this?), competition density (how many alternatives exist?), and execution feasibility (can a solo founder ship it?).",
-	},
-	{
-		question: "Is génio really free during beta?",
-		answer:
-			"Yes. While we are in beta, every account gets full access at $0/month. When paid plans launch, beta users will be grandfathered into a generous free tier.",
-	},
-	{
-		question: "Where does the market data come from?",
-		answer:
-			"génio aggregates public signals from four sources: search-engine trend APIs, social-platform public feeds, niche-community forums, and app-store metadata.",
-	},
-	{
-		question: "Do I need a technical background to use génio?",
-		answer:
-			"Not at all. génio is built for founders of every background. The interface walks you through niche selection, idea review, and scoring in plain language.",
-	},
-	{
-		question: "Can I export my validated ideas?",
-		answer:
-			"Absolutely. Every idea card, score breakdown, and bootstrap prompt can be exported as PDF or copied to your clipboard.",
-	},
+	{ value: "10k+" },
+	{ value: "4" },
+	{ value: "92%" },
+	{ value: "0" },
 ];
 
 /* ------------------------------------------------------------------ */
 /*  Page                                                               */
 /* ------------------------------------------------------------------ */
 
-export default function LandingPage() {
+export default async function LandingPage() {
+	const t = await getTranslations();
+
+	const featureData = [
+		{
+			title: t.landing.featureMarketSignals,
+			description: t.landing.featureMarketSignalsDesc,
+			icon: features[0].icon,
+		},
+		{
+			title: t.landing.featureCompetitiveAnalysis,
+			description: t.landing.featureCompetitiveAnalysisDesc,
+			icon: features[1].icon,
+		},
+		{
+			title: t.landing.featureConfidenceScoring,
+			description: t.landing.featureConfidenceScoringDesc,
+			icon: features[2].icon,
+		},
+		{
+			title: t.landing.featureBootstrapPrompts,
+			description: t.landing.featureBootstrapPromptsDesc,
+			icon: features[3].icon,
+		},
+	];
+
+	const stepData = [
+		{
+			step: steps[0].step,
+			title: t.landing.step1Title,
+			description: t.landing.step1Desc,
+		},
+		{
+			step: steps[1].step,
+			title: t.landing.step2Title,
+			description: t.landing.step2Desc,
+		},
+		{
+			step: steps[2].step,
+			title: t.landing.step3Title,
+			description: t.landing.step3Desc,
+		},
+	];
+
+	const statsData = [
+		{ value: stats[0].value, label: t.landing.statsIdeas },
+		{ value: stats[1].value, label: t.landing.statsSources },
+		{ value: stats[2].value, label: t.landing.statsAccuracy },
+		{ value: stats[3].value, label: t.landing.statsCost },
+	];
+
+	const pricingFeatures = [
+		t.landing.pricingFeature1,
+		t.landing.pricingFeature2,
+		t.landing.pricingFeature3,
+		t.landing.pricingFeature4,
+		t.landing.pricingFeature5,
+		t.landing.pricingFeature6,
+	];
+
+	const faqs = [
+		{
+			question: t.landing.faq1q,
+			answer: t.landing.faq1a,
+		},
+		{
+			question: t.landing.faq2q,
+			answer: t.landing.faq2a,
+		},
+		{
+			question: t.landing.faq3q,
+			answer: t.landing.faq3a,
+		},
+		{
+			question: t.landing.faq4q,
+			answer: t.landing.faq4a,
+		},
+		{
+			question: t.landing.faq5q,
+			answer: t.landing.faq5a,
+		},
+		{
+			question: t.landing.faq6q,
+			answer: t.landing.faq6a,
+		},
+	];
+
 	return (
 		<div className="flex flex-col gap-20 pb-8">
 			{/* Hero */}
@@ -180,19 +198,15 @@ export default function LandingPage() {
 						<span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--color-neu-accent-secondary)] opacity-75" />
 						<span className="relative inline-flex rounded-full h-2 w-2 bg-[var(--color-neu-accent-secondary)]" />
 					</span>
-					Free during beta — no credit card required
+					{t.landing.betaBadge}
 				</div>
 
 				<h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-[family-name:var(--font-display)] text-[var(--color-neu-text-primary)] leading-tight max-w-3xl">
-					Validate micro-SaaS ideas with{" "}
-					<span className="text-[var(--color-neu-accent)]">real market data</span>
-					, not gut feelings
+					{t.landing.heroTitle}
 				</h1>
 
 				<p className="text-lg sm:text-xl text-[var(--color-neu-text-secondary)] max-w-xl">
-					génio scans search trends, competitor landscapes, and community
-					signals to surface startup ideas worth your time — and shows you how
-					to build them.
+					{t.landing.heroSubtitle}
 				</p>
 
 				<div className="flex flex-col sm:flex-row gap-3 items-center">
@@ -200,13 +214,13 @@ export default function LandingPage() {
 						href="/signup"
 						className="inline-flex items-center justify-center gap-2 font-semibold px-8 py-3 rounded-[var(--radius-neu-full)] transition-all duration-200 hover:-translate-y-0.5 bg-[var(--color-neu-accent)] text-white shadow-neu-accent hover:shadow-neu-accent-hover"
 					>
-						Start validating for free
+						{t.common.startValidating}
 					</Link>
 					<Link
 						href="#how-it-works"
 						className="inline-flex items-center justify-center gap-2 font-semibold px-8 py-3 rounded-[var(--radius-neu-full)] transition-all duration-200 hover:-translate-y-0.5 bg-[var(--color-neu-surface)] text-[var(--color-neu-text-primary)] shadow-neu-sm hover:shadow-neu"
 					>
-						See how it works
+						{t.common.seeHowItWorks}
 					</Link>
 				</div>
 			</section>
@@ -218,15 +232,14 @@ export default function LandingPage() {
 						Features
 					</p>
 					<h2 className="text-3xl sm:text-4xl font-bold font-[family-name:var(--font-display)] text-[var(--color-neu-text-primary)] mb-4">
-						Everything you need to spot a winner
+						{t.landing.featuresTitle}
 					</h2>
 					<p className="text-lg text-[var(--color-neu-text-secondary)]">
-						Four pillars that turn raw signals into actionable micro-SaaS
-						ideas you can trust.
+						{t.landing.featuresSubtitle}
 					</p>
 				</div>
 				<div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
-					{features.map((f) => (
+					{featureData.map((f) => (
 						<div
 							key={f.title}
 							className="bg-[var(--color-neu-surface)] rounded-[var(--radius-neu)] shadow-neu-sm hover:shadow-neu transition-shadow p-6"
@@ -252,14 +265,14 @@ export default function LandingPage() {
 						How It Works
 					</p>
 					<h2 className="text-3xl sm:text-4xl font-bold font-[family-name:var(--font-display)] text-[var(--color-neu-text-primary)] mb-4">
-						From hunch to validated idea in three steps
+						{t.landing.howItWorksTitle}
 					</h2>
 					<p className="text-lg text-[var(--color-neu-text-secondary)]">
-						No spreadsheets, no manual research, no second-guessing.
+						{t.landing.howItWorksSubtitle}
 					</p>
 				</div>
 				<div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-10 relative">
-					{steps.map((s, i) => (
+					{stepData.map((s, i) => (
 						<div
 							key={s.step}
 							className="relative flex flex-col items-center text-center"
@@ -289,7 +302,7 @@ export default function LandingPage() {
 			<section>
 				<div className="bg-[var(--color-neu-surface)] rounded-[var(--radius-neu-lg)] shadow-neu-sm p-8 md:p-12">
 					<div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-						{stats.map((s) => (
+						{statsData.map((s) => (
 							<div key={s.label}>
 								<p className="text-3xl sm:text-4xl font-extrabold font-[family-name:var(--font-display)] text-[var(--color-neu-accent)]">
 									{s.value}
@@ -310,10 +323,10 @@ export default function LandingPage() {
 						Pricing
 					</p>
 					<h2 className="text-3xl sm:text-4xl font-bold font-[family-name:var(--font-display)] text-[var(--color-neu-text-primary)] mb-4">
-						Join the beta, completely free
+						{t.landing.pricingTitle}
 					</h2>
 					<p className="text-lg text-[var(--color-neu-text-secondary)]">
-						Early adopters get full access. No tricks, no trials that expire.
+						{t.landing.pricingSubtitle}
 					</p>
 				</div>
 				<div className="mt-10 max-w-md mx-auto">
@@ -324,18 +337,18 @@ export default function LandingPage() {
 
 						<div className="text-center mt-4">
 							<p className="text-sm font-semibold uppercase tracking-widest text-[var(--color-neu-text-muted)]">
-								Starter
+								{t.landing.pricingPlan}
 							</p>
 							<div className="mt-3 flex items-baseline justify-center gap-1">
 								<span className="text-5xl font-extrabold font-[family-name:var(--font-display)] text-[var(--color-neu-text-primary)]">
-									$0
+									{t.landing.pricingPrice}
 								</span>
 								<span className="text-[var(--color-neu-text-secondary)]">
-									/month
+									{t.landing.pricingPeriod}
 								</span>
 							</div>
 							<p className="text-sm text-[var(--color-neu-text-muted)] mt-2">
-								Free while in beta — lock in early access
+								{t.landing.pricingDescription}
 							</p>
 						</div>
 
@@ -368,7 +381,7 @@ export default function LandingPage() {
 								href="/signup"
 								className="inline-flex items-center justify-center gap-2 font-semibold px-8 py-3 rounded-[var(--radius-neu-full)] transition-all duration-200 hover:-translate-y-0.5 bg-[var(--color-neu-accent)] text-white shadow-neu-accent hover:shadow-neu-accent-hover"
 							>
-								Get started free
+								{t.common.getStarted}
 							</Link>
 						</div>
 					</div>
@@ -382,7 +395,7 @@ export default function LandingPage() {
 						FAQ
 					</p>
 					<h2 className="text-3xl sm:text-4xl font-bold font-[family-name:var(--font-display)] text-[var(--color-neu-text-primary)] mb-4">
-						Questions? We have answers.
+						{t.landing.faqTitle}
 					</h2>
 				</div>
 				<div className="mt-10 max-w-2xl mx-auto space-y-3">
@@ -419,54 +432,53 @@ export default function LandingPage() {
 			<section className="text-center py-12">
 				<div className="bg-[var(--color-neu-surface)] rounded-[var(--radius-neu-lg)] shadow-neu p-10 sm:p-14">
 					<h2 className="text-3xl sm:text-4xl font-extrabold font-[family-name:var(--font-display)] text-[var(--color-neu-text-primary)] mb-4">
-						Ready to stop guessing?
+						{t.landing.finalCTATitle}
 					</h2>
 					<p className="text-lg text-[var(--color-neu-text-secondary)] mb-8 max-w-md mx-auto">
-						Join beta users who validate ideas with data instead of
-						intuition. Free while in beta.
+						{t.landing.finalCTASubtitle}
 					</p>
 					<Link
 						href="/signup"
 						className="inline-flex items-center justify-center gap-2 font-semibold px-8 py-3 rounded-[var(--radius-neu-full)] transition-all duration-200 hover:-translate-y-0.5 bg-[var(--color-neu-accent)] text-white shadow-neu-accent hover:shadow-neu-accent-hover"
 					>
-						Create your free account
+						{t.common.createFreeAccount}
 					</Link>
 				</div>
 			</section>
 
 			{/* Footer */}
 			<footer className="border-t border-[var(--neu-shadow-dark)]/20 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-[var(--color-neu-text-muted)]">
-				<p>&copy; {new Date().getFullYear()} génio. All rights reserved.</p>
+				<p>&copy; {new Date().getFullYear()} génio. {t.footer.allRightsReserved}</p>
 				<nav className="flex items-center gap-6">
 					<Link
 						href="/login"
 						className="hover:text-[var(--color-neu-text-primary)] transition-colors"
 					>
-						Sign In
+						{t.footer.signIn}
 					</Link>
 					<Link
 						href="/signup"
 						className="hover:text-[var(--color-neu-text-primary)] transition-colors"
 					>
-						Sign Up
+						{t.footer.signUp}
 					</Link>
 					<Link
 						href="#features"
 						className="hover:text-[var(--color-neu-text-primary)] transition-colors"
 					>
-						Features
+						{t.footer.features}
 					</Link>
 					<Link
 						href="#pricing"
 						className="hover:text-[var(--color-neu-text-primary)] transition-colors"
 					>
-						Pricing
+						{t.footer.pricing}
 					</Link>
 					<Link
 						href="#faq"
 						className="hover:text-[var(--color-neu-text-primary)] transition-colors"
 					>
-						FAQ
+						{t.footer.faq}
 					</Link>
 				</nav>
 			</footer>

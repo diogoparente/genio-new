@@ -1,8 +1,12 @@
 import Link from "next/link";
 import { Logo } from "./logo";
 import { ThemeToggle } from "./theme-toggle";
+import { LanguageSwitcher } from "./LanguageSwitcher";
+import { getLanguage } from "@/lib/i18n";
 
-const Header = () => {
+const Header = async () => {
+	const lang = await getLanguage();
+
 	return (
 		<header className="h-14 bg-[var(--color-neu-bg)] border-b border-[var(--neu-shadow-dark)]/20 flex justify-between items-center fixed top-0 z-50 w-full px-4">
 			<Link href="/">
@@ -27,6 +31,7 @@ const Header = () => {
 				>
 					Get Started
 				</Link>
+				<LanguageSwitcher currentLanguage={lang} />
 				<ThemeToggle />
 			</div>
 		</header>

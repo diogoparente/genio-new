@@ -8,9 +8,24 @@ import { authClient } from "@/lib/auth-client";
 
 interface AuthFormProps {
 	mode: "login" | "signup";
+	labels?: {
+		title?: string;
+		subtitle?: string;
+		emailLabel?: string;
+		passwordLabel?: string;
+		nameLabel?: string;
+		submitLabel?: string;
+		loadingLabel?: string;
+		noAccountText?: string;
+		noAccountLink?: string;
+		haveAccountText?: string;
+		haveAccountLink?: string;
+		signInLink?: string;
+		signUpLink?: string;
+	};
 }
 
-export function AuthForm({ mode }: AuthFormProps) {
+export function AuthForm({ mode, labels }: AuthFormProps) {
 	const router = useRouter();
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
@@ -102,12 +117,12 @@ export function AuthForm({ mode }: AuthFormProps) {
 		<div className="w-full max-w-md mx-auto">
 			<div className="bg-[var(--color-neu-surface)] shadow-neu rounded-[var(--radius-neu)] p-8">
 				<h1 className="text-2xl font-bold mb-2 text-[var(--color-neu-text-primary)]">
-					{mode === "login" ? "Welcome back" : "Create your account"}
+					{labels?.title ?? (mode === "login" ? "Welcome back" : "Create your account")}
 				</h1>
 				<p className="text-[var(--color-neu-text-secondary)] mb-6">
-					{mode === "login"
+					{labels?.subtitle ?? (mode === "login"
 						? "Sign in to access your dashboard"
-						: "Start generating micro-SaaS ideas"}
+						: "Start generating micro-SaaS ideas")}
 				</p>
 
 				{error && (
@@ -123,7 +138,7 @@ export function AuthForm({ mode }: AuthFormProps) {
 								htmlFor="auth-name"
 								className="block text-sm font-medium text-[var(--color-neu-text-primary)] mb-1.5"
 							>
-								Name
+								{labels?.nameLabel ?? "Name"}
 							</label>
 							<input
 								id="auth-name"
@@ -143,7 +158,7 @@ export function AuthForm({ mode }: AuthFormProps) {
 							htmlFor="auth-email"
 							className="block text-sm font-medium text-[var(--color-neu-text-primary)] mb-1.5"
 						>
-							Email
+							{labels?.emailLabel ?? "Email"}
 						</label>
 						<input
 							id="auth-email"
@@ -162,7 +177,7 @@ export function AuthForm({ mode }: AuthFormProps) {
 							htmlFor="auth-password"
 							className="block text-sm font-medium text-[var(--color-neu-text-primary)] mb-1.5"
 						>
-							Password
+							{labels?.passwordLabel ?? "Password"}
 						</label>
 						<input
 							id="auth-password"
@@ -209,12 +224,10 @@ export function AuthForm({ mode }: AuthFormProps) {
 										d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
 									/>
 								</svg>
-								{mode === "login" ? "Signing in..." : "Creating account..."}
+								{labels?.loadingLabel ?? (mode === "login" ? "Signing in..." : "Creating account...")}
 							</span>
-						) : mode === "login" ? (
-							"Sign in"
 						) : (
-							"Create account"
+							labels?.submitLabel ?? (mode === "login" ? "Sign in" : "Create account")
 						)}
 					</button>
 				</form>
@@ -223,22 +236,22 @@ export function AuthForm({ mode }: AuthFormProps) {
 			<p className="mt-6 text-center text-sm text-[var(--color-neu-text-secondary)]">
 				{mode === "login" ? (
 					<>
-						Don&apos;t have an account?{" "}
+						{labels?.noAccountText ?? "Don't have an account?"}{" "}
 						<Link
 							href="/signup"
 							className="text-[var(--color-neu-accent)] hover:underline font-medium"
 						>
-							Sign up
+							{labels?.noAccountLink ?? "Sign up"}
 						</Link>
 					</>
 				) : (
 					<>
-						Already have an account?{" "}
+						{labels?.haveAccountText ?? "Already have an account?"}{" "}
 						<Link
 							href="/login"
 							className="text-[var(--color-neu-accent)] hover:underline font-medium"
 						>
-							Sign in
+							{labels?.haveAccountLink ?? "Sign in"}
 						</Link>
 					</>
 				)}
