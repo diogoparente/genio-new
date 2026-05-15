@@ -57,7 +57,7 @@ export function BootstrapPrompt({
 					className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-[var(--radius-neu-sm)] text-sm font-semibold transition-all ${
 						copied
 							? "bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300"
-							: "bg-[var(--color-neu-accent)] text-white shadow-neu-accent hover:shadow-neu-accent-hover active:shadow-neu-accent-inset"
+							: "bg-[var(--color-neu-accent)] text-white shadow-neu hover:shadow-neu-hover active:shadow-neu-inset"
 					}`}
 				>
 					{copied ? (

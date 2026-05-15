@@ -212,7 +212,7 @@ export default async function LandingPage() {
 				<div className="flex flex-col sm:flex-row gap-3 items-center">
 					<Link
 						href="/signup"
-						className="inline-flex items-center justify-center gap-2 font-semibold px-8 py-3 rounded-[var(--radius-neu-full)] transition-all duration-200 hover:-translate-y-0.5 bg-[var(--color-neu-accent)] text-white shadow-neu-accent hover:shadow-neu-accent-hover"
+						className="inline-flex items-center justify-center gap-2 font-semibold px-8 py-3 rounded-[var(--radius-neu-full)] transition-all duration-200 hover:-translate-y-0.5 bg-[var(--color-neu-accent)] text-white shadow-neu hover:shadow-neu-hover"
 					>
 						{t.common.startValidating}
 					</Link>
@@ -379,7 +379,7 @@ export default async function LandingPage() {
 						<div className="mt-8 text-center">
 							<Link
 								href="/signup"
-								className="inline-flex items-center justify-center gap-2 font-semibold px-8 py-3 rounded-[var(--radius-neu-full)] transition-all duration-200 hover:-translate-y-0.5 bg-[var(--color-neu-accent)] text-white shadow-neu-accent hover:shadow-neu-accent-hover"
+								className="inline-flex items-center justify-center gap-2 font-semibold px-8 py-3 rounded-[var(--radius-neu-full)] transition-all duration-200 hover:-translate-y-0.5 bg-[var(--color-neu-accent)] text-white shadow-neu hover:shadow-neu-hover"
 							>
 								{t.common.getStarted}
 							</Link>
@@ -439,7 +439,7 @@ export default async function LandingPage() {
 					</p>
 					<Link
 						href="/signup"
-						className="inline-flex items-center justify-center gap-2 font-semibold px-8 py-3 rounded-[var(--radius-neu-full)] transition-all duration-200 hover:-translate-y-0.5 bg-[var(--color-neu-accent)] text-white shadow-neu-accent hover:shadow-neu-accent-hover"
+						className="inline-flex items-center justify-center gap-2 font-semibold px-8 py-3 rounded-[var(--radius-neu-full)] transition-all duration-200 hover:-translate-y-0.5 bg-[var(--color-neu-accent)] text-white shadow-neu hover:shadow-neu-hover"
 					>
 						{t.common.createFreeAccount}
 					</Link>

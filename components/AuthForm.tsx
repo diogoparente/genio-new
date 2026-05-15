@@ -200,7 +200,7 @@ export function AuthForm({ mode, labels }: AuthFormProps) {
 					<button
 						type="submit"
 						disabled={loading}
-						className="w-full py-2.5 px-4 rounded-[var(--radius-neu-sm)] bg-[var(--color-neu-accent)] text-white font-semibold shadow-neu-accent hover:shadow-neu-accent-hover active:shadow-neu-accent-inset transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+						className="w-full py-2.5 px-4 rounded-[var(--radius-neu-sm)] bg-[var(--color-neu-accent)] text-white font-semibold shadow-neu hover:shadow-neu-hover active:shadow-neu-inset transition-all disabled:opacity-50 disabled:cursor-not-allowed"
 					>
 						{loading ? (
 							<span className="flex items-center justify-center gap-2">

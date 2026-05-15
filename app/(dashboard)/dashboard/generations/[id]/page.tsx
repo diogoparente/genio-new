@@ -148,7 +148,7 @@ export default async function GenerationDetailPage({
 					</p>
 					<Link
 						href="/dashboard"
-						className="inline-block mt-4 py-2 px-6 rounded-[var(--radius-neu-sm)] bg-[var(--color-neu-accent)] text-white font-semibold shadow-neu-accent hover:shadow-neu-accent-hover transition-all"
+						className="inline-block mt-4 py-2 px-6 rounded-[var(--radius-neu-sm)] bg-[var(--color-neu-accent)] text-white font-semibold shadow-neu hover:shadow-neu-hover transition-all"
 					>
 						Try Again
 					</Link>

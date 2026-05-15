@@ -160,7 +160,7 @@ export function GenerationForm({ labels }: GenerationFormProps) {
 								[&::-webkit-slider-thumb]:h-5
 								[&::-webkit-slider-thumb]:rounded-full
 								[&::-webkit-slider-thumb]:bg-[var(--color-neu-accent)]
-								[&::-webkit-slider-thumb]:shadow-neu-accent
+								[&::-webkit-slider-thumb]:shadow-neu-sm
 								[&::-webkit-slider-thumb]:cursor-pointer
 								disabled:opacity-50"
 						/>
@@ -181,7 +181,7 @@ export function GenerationForm({ labels }: GenerationFormProps) {
 				<button
 					type="submit"
 					disabled={isGenerating}
-					className="w-full py-3 px-4 rounded-[var(--radius-neu-sm)] bg-[var(--color-neu-accent)] text-white font-semibold shadow-neu-accent hover:shadow-neu-accent-hover active:shadow-neu-accent-inset transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+					className="w-full py-3 px-4 rounded-[var(--radius-neu-sm)] bg-[var(--color-neu-accent)] text-white font-semibold shadow-neu hover:shadow-neu-hover active:shadow-neu-inset transition-all disabled:opacity-50 disabled:cursor-not-allowed"
 				>
 					{isGenerating
 						? (labels?.generating ?? "Generating...")

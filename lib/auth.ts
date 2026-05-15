@@ -54,11 +54,15 @@ const authProxy: ReturnType<typeof createAuth> = new Proxy(
 	{} as ReturnType<typeof createAuth>,
 	{
 		get(_, prop, receiver) {
-			return Reflect.get(
-				getAuth() as Record<string | symbol, unknown>,
-				prop,
-				receiver,
-			);
+			const target = getAuth() as Record<string | symbol, unknown>;
+			return Reflect.get(target, prop, receiver);
+		},
+		has(_, prop) {
+			return prop in (getAuth() as object);
+		},
+		apply(_, _thisArg, args) {
+			const target = getAuth();
+			return (target as Function).apply(_thisArg, args);
 		},
 		ownKeys() {
 			return Reflect.ownKeys(getAuth() as object);

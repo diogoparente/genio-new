@@ -96,7 +96,7 @@ export default async function GenerationsPage({ searchParams }: GenerationsPageP
 					</p>
 					<Link
 						href="/dashboard"
-						className="inline-block mt-4 py-2 px-6 rounded-[var(--radius-neu-sm)] bg-[var(--color-neu-accent)] text-white font-semibold shadow-neu-accent hover:shadow-neu-accent-hover transition-all"
+						className="inline-block mt-4 py-2 px-6 rounded-[var(--radius-neu-sm)] bg-[var(--color-neu-accent)] text-white font-semibold shadow-neu hover:shadow-neu-hover transition-all"
 					>
 						{t.history.createFirst}
 					</Link>
@@ -155,7 +155,7 @@ export default async function GenerationsPage({ searchParams }: GenerationsPageP
 						return isCurrent ? (
 							<span
 								key={p}
-								className="px-4 py-2 rounded-[var(--radius-neu-sm)] bg-[var(--color-neu-accent)] text-white text-sm font-semibold shadow-neu-accent"
+								className="px-4 py-2 rounded-[var(--radius-neu-sm)] bg-[var(--color-neu-accent)] text-white text-sm font-semibold shadow-neu-sm"
 							>
 								{p}
 							</span>
