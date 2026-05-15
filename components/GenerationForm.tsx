@@ -1,23 +1,57 @@
 "use client";
 
-import { useState, useId } from "react";
+import { useState, useId, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { GenerationStatus } from "./GenerationStatus";
 
-export function GenerationForm() {
+interface GenerationFormLabels {
+	title?: string;
+	description?: string;
+	nicheLabel?: string;
+	nichePlaceholder?: string;
+	batchSizePrefix?: string;
+	generateButton?: string;
+	generating?: string;
+	error?: string;
+	statusTitle?: string;
+	statusDescription?: string;
+}
+
+interface GenerationFormProps {
+	labels?: GenerationFormLabels;
+}
+
+export function GenerationForm({ labels }: GenerationFormProps) {
 	const router = useRouter();
 	const [niche, setNiche] = useState("");
 	const [batchSize, setBatchSize] = useState(7);
 	const [isGenerating, setIsGenerating] = useState(false);
 	const [error, setError] = useState("");
+	const submittingRef = useRef(false);
+	const abortRef = useRef<AbortController | null>(null);
 
 	const nicheInputId = useId();
 	const batchSliderId = useId();
 
+	// Cleanup on unmount
+	useEffect(() => {
+		return () => {
+			abortRef.current?.abort();
+		};
+	}, []);
+
 	async function handleSubmit(e: React.FormEvent) {
 		e.preventDefault();
+
+		if (submittingRef.current) return;
+		submittingRef.current = true;
+
 		setError("");
 		setIsGenerating(true);
+
+		const controller = new AbortController();
+		abortRef.current = controller;
+		const timeout = setTimeout(() => controller.abort(), 90_000);
 
 		try {
 			const res = await fetch("/api/generations", {
@@ -27,6 +61,7 @@ export function GenerationForm() {
 					niche: niche.trim() || undefined,
 					batchSize,
 				}),
+				signal: controller.signal,
 			});
 
 			if (!res.ok) {
@@ -39,16 +74,30 @@ export function GenerationForm() {
 			const data: { generationId: string } = await res.json();
 			router.push(`/dashboard/generations/${data.generationId}`);
 		} catch (err) {
-			setError(
-				err instanceof Error ? err.message : "An unexpected error occurred",
-			);
+			if (err instanceof DOMException && err.name === "AbortError") {
+				setError("Request timed out. Please try again.");
+			} else {
+				setError(
+					err instanceof Error ? err.message : "An unexpected error occurred",
+				);
+			}
 			setIsGenerating(false);
+		} finally {
+			clearTimeout(timeout);
+			abortRef.current = null;
+			submittingRef.current = false;
 		}
 	}
 
 	return (
 		<div className="space-y-6">
-			{isGenerating && <GenerationStatus isGenerating={isGenerating} />}
+			{isGenerating && (
+				<GenerationStatus
+					isGenerating={isGenerating}
+					statusTitle={labels?.statusTitle}
+					statusDescription={labels?.statusDescription}
+				/>
+			)}
 
 			<form
 				onSubmit={handleSubmit}
@@ -56,11 +105,11 @@ export function GenerationForm() {
 			>
 				<div>
 					<h2 className="text-xl font-bold text-[var(--color-neu-text-primary)] mb-1">
-						Generate Ideas
+						{labels?.title ?? "Generate Ideas"}
 					</h2>
 					<p className="text-sm text-[var(--color-neu-text-secondary)]">
-						Optionally specify a niche, or leave blank for broad market
-						exploration.
+						{labels?.description ??
+							"Optionally specify a niche, or leave blank for broad market exploration."}
 					</p>
 				</div>
 
@@ -70,14 +119,14 @@ export function GenerationForm() {
 						htmlFor={nicheInputId}
 						className="block text-sm font-medium text-[var(--color-neu-text-primary)] mb-1.5"
 					>
-						Niche (optional)
+						{labels?.nicheLabel ?? "Niche (optional)"}
 					</label>
 					<input
 						id={nicheInputId}
 						type="text"
 						value={niche}
 						onChange={(e) => setNiche(e.target.value)}
-						placeholder='e.g. "productivity tools for remote teams"'
+						placeholder={labels?.nichePlaceholder ?? 'e.g. "productivity tools for remote teams"'}
 						disabled={isGenerating}
 						className="w-full px-4 py-2.5 rounded-[var(--radius-neu-sm)] bg-[var(--color-neu-surface)] border border-[var(--neu-shadow-dark)] text-[var(--color-neu-text-primary)] placeholder:text-[var(--color-neu-text-muted)] focus:outline-none focus:ring-2 focus:ring-[var(--color-neu-accent)] transition-shadow shadow-neu-inset-sm disabled:opacity-50"
 					/>
@@ -89,7 +138,7 @@ export function GenerationForm() {
 						htmlFor={batchSliderId}
 						className="block text-sm font-medium text-[var(--color-neu-text-primary)] mb-1.5"
 					>
-						Ideas to generate:{" "}
+						{labels?.batchSizePrefix ?? "Ideas to generate:"}{" "}
 						<span className="text-[var(--color-neu-accent)] font-bold">
 							{batchSize}
 						</span>
@@ -134,7 +183,9 @@ export function GenerationForm() {
 					disabled={isGenerating}
 					className="w-full py-3 px-4 rounded-[var(--radius-neu-sm)] bg-[var(--color-neu-accent)] text-white font-semibold shadow-neu-accent hover:shadow-neu-accent-hover active:shadow-neu-accent-inset transition-all disabled:opacity-50 disabled:cursor-not-allowed"
 				>
-					{isGenerating ? "Generating..." : "Generate Ideas"}
+					{isGenerating
+						? (labels?.generating ?? "Generating...")
+						: (labels?.generateButton ?? "Generate Ideas")}
 				</button>
 			</form>
 		</div>

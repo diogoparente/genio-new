@@ -2,9 +2,11 @@
 
 interface GenerationStatusProps {
 	isGenerating: boolean;
+	statusTitle?: string;
+	statusDescription?: string;
 }
 
-export function GenerationStatus({ isGenerating }: GenerationStatusProps) {
+export function GenerationStatus({ isGenerating, statusTitle, statusDescription }: GenerationStatusProps) {
 	if (!isGenerating) return null;
 
 	return (
@@ -32,12 +34,11 @@ export function GenerationStatus({ isGenerating }: GenerationStatusProps) {
 				</svg>
 				<div>
 					<p className="text-lg font-semibold text-[var(--color-neu-text-primary)]">
-						Generating ideas...
+						{statusTitle ?? "Generating ideas..."}
 					</p>
 					<p className="text-sm text-[var(--color-neu-text-secondary)] mt-1">
-						Analyzing market signals and synthesizing opportunities.
-						<br />
-						This may take up to a minute.
+						{statusDescription ??
+							"Analyzing market signals and synthesizing opportunities. This may take up to a minute."}
 					</p>
 				</div>
 			</div>

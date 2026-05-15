@@ -27,7 +27,20 @@ export default async function DashboardPage() {
 				</p>
 			</div>
 
-			<GenerationForm />
+			<GenerationForm
+					labels={{
+						title: t.dashboard.generateIdeas,
+						description: t.dashboard.nicheDescription,
+						nicheLabel: t.dashboard.nicheLabel,
+						nichePlaceholder: t.dashboard.nichePlaceholder,
+						batchSizePrefix: t.dashboard.batchSizePrefix,
+						generateButton: t.dashboard.generateButton,
+						generating: t.dashboard.generating,
+						error: t.dashboard.error,
+						statusTitle: t.dashboard.generatingStatus,
+						statusDescription: t.dashboard.generatingDescription,
+					}}
+				/>
 		</div>
 	);
 }

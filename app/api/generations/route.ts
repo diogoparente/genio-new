@@ -5,6 +5,7 @@ import { db } from "@/lib/db/client";
 import { ideaGenerations } from "@/lib/db/schema";
 import { desc, eq } from "drizzle-orm";
 import { runGeneration } from "@/lib/generation/orchestrator";
+import { checkRateLimit } from "@/lib/rate-limit";
 import { z } from "zod";
 
 async function getSession() {
@@ -16,11 +17,32 @@ const createBodySchema = z.object({
 	batchSize: z.number().int().min(3).max(10).optional().default(7),
 });
 
+const GENERATION_RATE_LIMIT = {
+	maxRequests: 5,
+	windowMs: 60_000, // 5 per minute
+};
+
 /* POST /api/generations — create a new generation run */
 export async function POST(request: Request) {
 	const session = await getSession();
 	if (!session) {
 		return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+	}
+
+	// Rate limit per user
+	const rateLimitKey = `generation:${session.user.id}`;
+	const rateLimit = checkRateLimit(rateLimitKey, GENERATION_RATE_LIMIT);
+	if (!rateLimit.allowed) {
+		return NextResponse.json(
+			{ error: "Too many requests. Please wait before generating again." },
+			{
+				status: 429,
+				headers: {
+					"X-RateLimit-Remaining": "0",
+					"X-RateLimit-Reset": String(rateLimit.resetAt),
+				},
+			},
+		);
 	}
 
 	let body: unknown;

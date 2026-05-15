@@ -44,8 +44,20 @@ export async function runGeneration(params: RunGenerationParams) {
 		// 2. Fetch signals from all sources in parallel
 		const sourceResults = await fetchAllSignals({ niche, limit: 20 });
 		const allSignals: NormalizedSignal[] = [];
+		let successfulSources = 0;
 		for (const r of sourceResults) {
+			if (!r.error) successfulSources++;
 			allSignals.push(...r.signals);
+		}
+
+		if (successfulSources === 0 && allSignals.length === 0) {
+			await db
+				.update(ideaGenerations)
+				.set({ status: "failed" })
+				.where(eq(ideaGenerations.id, generationId));
+			throw new Error(
+				"All signal sources are currently unavailable. Please try again later.",
+			);
 		}
 
 		// 3. Build prompts and call LLM

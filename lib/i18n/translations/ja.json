@@ -13,7 +13,7 @@
     "cancel": "キャンセル",
     "delete": "削除",
     "back": "戻る",
-    "allRightsReserved": "All rights reserved"
+    "allRightsReserved": "無断複写・転載を禁じます"
   },
   "landing": {
     "betaBadge": "ベータ期間中は無料 — クレジットカード不要",
@@ -76,7 +76,9 @@
     "noIdeasYet": "まだアイデアがありません。最初のバッチを生成してください。",
     "nicheLabel": "ニッチ（任意）",
     "nichePlaceholder": "例：生産性、開発ツール、Eコマース",
+    "nicheDescription": "任意でニッチを指定するか、空白のままにして幅広い市場探索を行います。",
     "batchSizeLabel": "アイデア数",
+    "batchSizePrefix": "生成するアイデア:",
     "generating": "生成中...",
     "generateButton": "アイデアを生成",
     "generatingStatus": "アイデアを生成中...",
@@ -117,6 +119,6 @@
     "features": "機能",
     "pricing": "価格",
     "faq": "FAQ",
-    "allRightsReserved": "All rights reserved"
+    "allRightsReserved": "無断複写・転載を禁じます"
   }
 }

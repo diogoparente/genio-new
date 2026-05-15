@@ -13,7 +13,7 @@
     "cancel": "취소",
     "delete": "삭제",
     "back": "뒤로",
-    "allRightsReserved": "All rights reserved"
+    "allRightsReserved": "모든 권리 보유"
   },
   "landing": {
     "betaBadge": "베타 기간 동안 무료 — 신용카드 불필요",
@@ -76,7 +76,9 @@
     "noIdeasYet": "아직 아이디어가 없습니다. 첫 번째 배치를 생성하세요.",
     "nicheLabel": "틈새 (선택 사항)",
     "nichePlaceholder": "예: 생산성, 개발자 도구, 전자상거래",
+    "nicheDescription": "선택적으로 틈새를 지정하거나 비워두면 광범위한 시장 탐색을 수행합니다.",
     "batchSizeLabel": "아이디어 수",
+    "batchSizePrefix": "생성할 아이디어:",
     "generating": "생성 중...",
     "generateButton": "아이디어 생성",
     "generatingStatus": "아이디어 생성 중...",
@@ -117,6 +119,6 @@
     "features": "기능",
     "pricing": "가격",
     "faq": "FAQ",
-    "allRightsReserved": "All rights reserved"
+    "allRightsReserved": "모든 권리 보유"
   }
 }
