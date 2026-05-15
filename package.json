@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
-    "@libsql/client": "^0.14.0",
+    "@libsql/client": "0.10.0",
     "@libsql/kysely-libsql": "^0.4.1",
     "drizzle-orm": "^0.42.0",
     "@modelcontextprotocol/sdk": "^1.27.1",

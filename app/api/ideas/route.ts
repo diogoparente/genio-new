@@ -1,15 +1,7 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
-import { db } from "@/lib/db/client";
-import {
-	ideas,
-	ideaGenerations,
-	ideaSignals,
-	ideaCompetitors,
-	ideaDetails,
-} from "@/lib/db/schema";
-import { and, desc, eq, gte, like } from "drizzle-orm";
+import { listIdeas } from "@/lib/ideas/reader";
 import { z } from "zod";
 
 async function getSession() {
@@ -48,49 +40,15 @@ export async function GET(request: Request) {
 		);
 	}
 
-	const { monetizationModel, minConfidence, saved, page, limit } =
-		parsed.data;
+	const { monetizationModel, minConfidence, saved, page, limit } = parsed.data;
 
-	// Verify ownership: join with ideaGenerations on user_id
-	const conditions = [eq(ideaGenerations.userId, session.user.id)];
+	const result = await listIdeas(session.user.id, {
+		monetizationModel,
+		minConfidence,
+		saved,
+		page,
+		limit,
+	});
 
-	if (monetizationModel) {
-		conditions.push(eq(ideas.monetizationModel, monetizationModel));
-	}
-	if (minConfidence !== undefined) {
-		conditions.push(gte(ideas.confidenceScore, minConfidence));
-	}
-	if (saved !== undefined) {
-		conditions.push(eq(ideas.isSaved, saved ? 1 : 0));
-	}
-
-	const offset = (page - 1) * limit;
-
-	const rows = await db
-		.select({
-			idea: {
-				id: ideas.id,
-				generationId: ideas.generationId,
-				name: ideas.name,
-				tagline: ideas.tagline,
-				description: ideas.description,
-				targetAudience: ideas.targetAudience,
-				monetizationModel: ideas.monetizationModel,
-				confidenceScore: ideas.confidenceScore,
-				isSaved: ideas.isSaved,
-				notes: ideas.notes,
-				createdAt: ideas.createdAt,
-			},
-		})
-		.from(ideas)
-		.innerJoin(
-			ideaGenerations,
-			eq(ideaGenerations.id, ideas.generationId),
-		)
-		.where(and(...conditions))
-		.orderBy(desc(ideas.createdAt))
-		.limit(limit)
-		.offset(offset);
-
-	return NextResponse.json({ ideas: rows.map((r) => r.idea), page, limit });
+	return NextResponse.json(result);
 }

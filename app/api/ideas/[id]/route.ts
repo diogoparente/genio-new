@@ -4,31 +4,16 @@ import { headers } from "next/headers";
 import { db } from "@/lib/db/client";
 import {
 	ideas,
-	ideaGenerations,
 	ideaSignals,
 	ideaCompetitors,
 	ideaDetails,
 } from "@/lib/db/schema";
-import { and, eq } from "drizzle-orm";
+import { getIdeaWithRelations, verifyIdeaOwnership } from "@/lib/ideas/reader";
+import { eq } from "drizzle-orm";
 import { z } from "zod";
 
 async function getSession() {
 	return await auth.api.getSession({ headers: await headers() });
-}
-
-/* Verify the current user owns the idea via its parent generation */
-async function verifyOwnership(ideaId: string, userId: string): Promise<boolean> {
-	const [row] = await db
-		.select({ userId: ideaGenerations.userId })
-		.from(ideas)
-		.innerJoin(
-			ideaGenerations,
-			eq(ideaGenerations.id, ideas.generationId),
-		)
-		.where(eq(ideas.id, ideaId))
-		.limit(1);
-
-	return row?.userId === userId;
 }
 
 /* GET /api/ideas/[id] — idea + signals + competitors + details */
@@ -43,42 +28,21 @@ export async function GET(
 
 	const { id } = await params;
 
-	const owns = await verifyOwnership(id, session.user.id);
+	const owns = await verifyIdeaOwnership(id, session.user.id);
 	if (!owns) {
 		return NextResponse.json({ error: "Not found" }, { status: 404 });
 	}
 
-	const [idea] = await db
-		.select()
-		.from(ideas)
-		.where(eq(ideas.id, id))
-		.limit(1);
-
-	if (!idea) {
+	const data = await getIdeaWithRelations(id);
+	if (!data) {
 		return NextResponse.json({ error: "Idea not found" }, { status: 404 });
 	}
 
-	const [signals, competitors, [detail]] = await Promise.all([
-		db
-			.select()
-			.from(ideaSignals)
-			.where(eq(ideaSignals.ideaId, id)),
-		db
-			.select()
-			.from(ideaCompetitors)
-			.where(eq(ideaCompetitors.ideaId, id)),
-		db
-			.select()
-			.from(ideaDetails)
-			.where(eq(ideaDetails.ideaId, id))
-			.limit(1),
-	]);
-
 	return NextResponse.json({
-		idea,
-		signals,
-		competitors,
-		details: detail ?? null,
+		idea: data.idea,
+		signals: data.signals,
+		competitors: data.competitors,
+		details: data.detail ?? null,
 	});
 }
 
@@ -99,7 +63,7 @@ export async function PATCH(
 
 	const { id } = await params;
 
-	const owns = await verifyOwnership(id, session.user.id);
+	const owns = await verifyIdeaOwnership(id, session.user.id);
 	if (!owns) {
 		return NextResponse.json({ error: "Not found" }, { status: 404 });
 	}
@@ -157,7 +121,7 @@ export async function DELETE(
 
 	const { id } = await params;
 
-	const owns = await verifyOwnership(id, session.user.id);
+	const owns = await verifyIdeaOwnership(id, session.user.id);
 	if (!owns) {
 		return NextResponse.json({ error: "Not found" }, { status: 404 });
 	}
