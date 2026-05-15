@@ -1,6 +1,5 @@
 import "./globals.css";
-import { GeistMono } from "geist/font/mono";
-import { GeistSans } from "geist/font/sans";
+import { DM_Sans, Plus_Jakarta_Sans } from "next/font/google";
 import type { Metadata } from "next";
 import { BackgroundRippleEffect } from "@/components/background-ripple-effect";
 import Header from "@/components/header";
@@ -11,11 +10,21 @@ export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = createMetadata({
 	title: {
-		template: "%s | Better Auth",
-		default: "Better Auth",
+		template: "%s | génio",
+		default: "génio",
 	},
 	description: "The most comprehensive authentication framework for TypeScript",
 	metadataBase: new URL("https://demo.better-auth.com"),
+});
+
+const jakarta = Plus_Jakarta_Sans({
+	subsets: ["latin"],
+	variable: "--font-display",
+});
+
+const dmSans = DM_Sans({
+	subsets: ["latin"],
+	variable: "--font-body",
 });
 
 export default function RootLayout({
@@ -28,7 +37,9 @@ export default function RootLayout({
 			<head>
 				<link rel="icon" href="/favicon/favicon.ico" sizes="any" />
 			</head>
-			<body className={`${GeistSans.variable} ${GeistMono.variable} font-sans`}>
+			<body
+				className={`${jakarta.variable} ${dmSans.variable} bg-[var(--color-neu-bg)]`}
+			>
 				<Providers>
 					<div className="min-h-[calc(100vh-3.5rem)] mt-14 w-full relative">
 						{/* Site Header */}
