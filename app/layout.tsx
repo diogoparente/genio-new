@@ -7,6 +7,8 @@ import Header from "@/components/header";
 import Providers from "@/components/providers";
 import { createMetadata } from "@/lib/metadata";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = createMetadata({
 	title: {
 		template: "%s | Better Auth",
