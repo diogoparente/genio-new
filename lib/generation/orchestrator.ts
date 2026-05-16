@@ -7,7 +7,7 @@ import {
 	ideaDetails,
 } from "@/lib/db/schema";
 import { fetchAllSignals } from "@/lib/sources/registry";
-import { getLLMProvider } from "@/lib/llm/deepseek";
+import { getLLMProvider } from "@/lib/llm/provider";
 import { synthesizedOutputSchema } from "@/lib/synthesis/parser";
 import { buildSystemPrompt, buildUserPrompt } from "@/lib/synthesis/prompt";
 import type { NormalizedSignal } from "@/lib/sources/types";
