@@ -1,24 +1,41 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import * as SheetPrimitive from "@radix-ui/react-dialog";
 import { ThemeToggle } from "./theme-toggle";
 import { LanguageSwitcher } from "./LanguageSwitcher";
+import { authClient } from "@/lib/auth-client";
 
 interface MobileMenuProps {
+    loggedIn: boolean;
+    isDashboard: boolean;
     signInLabel: string;
-    getStartedLabel: string;
+    signUpLabel: string;
+    signOutLabel: string;
+    appLabel: string;
     currentLanguage: string;
 }
 
 export function MobileMenu({
+    loggedIn,
+    isDashboard,
     signInLabel,
-    getStartedLabel,
+    signUpLabel,
+    signOutLabel,
+    appLabel,
     currentLanguage,
 }: MobileMenuProps) {
     const [open, setOpen] = useState(false);
+    const router = useRouter();
+
+    async function handleSignOut() {
+        await authClient.signOut();
+        setOpen(false);
+        router.refresh();
+    }
 
     return (
         <SheetPrimitive.Root open={open} onOpenChange={setOpen}>
@@ -42,20 +59,43 @@ export function MobileMenu({
                     <div className="flex flex-col h-full pt-12">
                         {/* Nav links */}
                         <nav className="flex flex-col gap-1 px-3 py-4">
-                            <Link
-                                href="/login"
-                                onClick={() => setOpen(false)}
-                                className="inline-flex items-center justify-center gap-2 text-sm font-semibold px-4 py-2.5 rounded-[var(--radius-neu-full)] transition-all duration-200 hover:-translate-y-0.5 bg-[var(--color-neu-surface)] text-[var(--color-neu-text-primary)] shadow-neu-sm hover:shadow-neu"
-                            >
-                                {signInLabel}
-                            </Link>
-                            <Link
-                                href="/signup"
-                                onClick={() => setOpen(false)}
-                                className="inline-flex items-center justify-center gap-2 text-sm font-semibold px-4 py-2.5 rounded-[var(--radius-neu-full)] transition-all duration-200 hover:-translate-y-0.5 bg-[var(--color-neu-accent)] text-white shadow-neu-sm hover:shadow-neu"
-                            >
-                                {getStartedLabel}
-                            </Link>
+                            {loggedIn ? (
+                                <>
+                                    {!isDashboard && (
+                                        <Link
+                                            href="/dashboard"
+                                            onClick={() => setOpen(false)}
+                                            className="inline-flex items-center justify-center gap-2 text-sm font-semibold px-4 py-2.5 rounded-[var(--radius-neu-full)] transition-all duration-200 hover:-translate-y-0.5 bg-[var(--color-neu-surface)] text-[var(--color-neu-text-primary)] shadow-neu-sm hover:shadow-neu"
+                                        >
+                                            {appLabel}
+                                        </Link>
+                                    )}
+                                    <button
+                                        type="button"
+                                        onClick={handleSignOut}
+                                        className="inline-flex items-center justify-center gap-2 text-sm font-semibold px-4 py-2.5 rounded-[var(--radius-neu-full)] transition-all duration-200 hover:-translate-y-0.5 bg-[var(--color-neu-surface)] text-[var(--color-neu-text-primary)] shadow-neu-sm hover:shadow-neu"
+                                    >
+                                        {signOutLabel}
+                                    </button>
+                                </>
+                            ) : (
+                                <>
+                                    <Link
+                                        href="/login"
+                                        onClick={() => setOpen(false)}
+                                        className="inline-flex items-center justify-center gap-2 text-sm font-semibold px-4 py-2.5 rounded-[var(--radius-neu-full)] transition-all duration-200 hover:-translate-y-0.5 bg-[var(--color-neu-surface)] text-[var(--color-neu-text-primary)] shadow-neu-sm hover:shadow-neu"
+                                    >
+                                        {signInLabel}
+                                    </Link>
+                                    <Link
+                                        href="/signup"
+                                        onClick={() => setOpen(false)}
+                                        className="inline-flex items-center justify-center gap-2 text-sm font-semibold px-4 py-2.5 rounded-[var(--radius-neu-full)] transition-all duration-200 hover:-translate-y-0.5 bg-[var(--color-neu-accent)] text-white shadow-neu-sm hover:shadow-neu"
+                                    >
+                                        {signUpLabel}
+                                    </Link>
+                                </>
+                            )}
                         </nav>
 
                         <div className="mt-auto border-t border-[var(--neu-shadow-dark)]/20 px-6 py-4 flex items-center justify-between">

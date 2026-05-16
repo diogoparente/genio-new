@@ -13,7 +13,8 @@
     "cancel": "キャンセル",
     "delete": "削除",
     "back": "戻る",
-    "allRightsReserved": "無断複写・転載を禁じます"
+    "allRightsReserved": "無断複写・転載を禁じます",
+    "app": "App"
   },
   "landing": {
     "betaBadge": "ベータ期間中は無料 — クレジットカード不要",

@@ -3,13 +3,13 @@
 import { useRouter } from "next/navigation";
 
 const languages = [
-	{ code: "en", name: "English", flag: "\u{1F1EC}\u{1F1E7}" },
-	{ code: "pt", name: "Portugu\u00eas", flag: "\u{1F1E7}\u{1F1F7}" },
-	{ code: "es", name: "Espa\u00f1ol", flag: "\u{1F1EA}\u{1F1F8}" },
-	{ code: "fr", name: "Fran\u00e7ais", flag: "\u{1F1EB}\u{1F1F7}" },
-	{ code: "de", name: "Deutsch", flag: "\u{1F1E9}\u{1F1EA}" },
-	{ code: "ja", name: "\u65E5\u672C\u8A9E", flag: "\u{1F1EF}\u{1F1F5}" },
-	{ code: "ko", name: "\uD55C\uAD6D\uC5B4", flag: "\u{1F1F0}\u{1F1F7}" },
+	{ code: "en", name: "English" },
+	{ code: "pt", name: "Portugu\u00eas" },
+	{ code: "es", name: "Espa\u00f1ol" },
+	{ code: "fr", name: "Fran\u00e7ais" },
+	{ code: "de", name: "Deutsch" },
+	{ code: "ja", name: "\u65E5\u672C\u8A9E" },
+	{ code: "ko", name: "\uD55C\uAD6D\uC5B4" },
 ];
 
 export function LanguageSwitcher({ currentLanguage = "en" }: { currentLanguage?: string }) {
@@ -34,7 +34,7 @@ export function LanguageSwitcher({ currentLanguage = "en" }: { currentLanguage?:
 		>
 			{languages.map((l) => (
 				<option key={l.code} value={l.code}>
-					{l.flag} {l.name}
+					{l.name}
 				</option>
 			))}
 		</select>

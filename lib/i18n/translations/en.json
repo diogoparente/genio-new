@@ -13,7 +13,8 @@
     "cancel": "Cancel",
     "delete": "Delete",
     "back": "Back",
-    "allRightsReserved": "All rights reserved"
+    "allRightsReserved": "All rights reserved",
+    "app": "App"
   },
   "landing": {
     "betaBadge": "Free during beta — no credit card required",

@@ -15,9 +15,14 @@ export async function middleware(request: NextRequest) {
 		pathname.startsWith(prefix),
 	);
 
+	const requestHeaders = new Headers(request.headers);
+	requestHeaders.set("x-pathname", pathname);
+
 	// Only check session for protected or auth routes
 	if (!isProtectedRoute && !isAuthPage) {
-		return NextResponse.next();
+		return NextResponse.next({
+			request: { headers: requestHeaders },
+		});
 	}
 
 	const session = await auth.api.getSession({
@@ -36,7 +41,9 @@ export async function middleware(request: NextRequest) {
 		return NextResponse.redirect(dashboardUrl);
 	}
 
-	return NextResponse.next();
+	return NextResponse.next({
+		request: { headers: requestHeaders },
+	});
 }
 
 export const config = {
