@@ -5,7 +5,7 @@ import { auth } from "@/lib/auth";
 const protectedPrefixes = ["/dashboard", "/api/generations", "/api/ideas"];
 const authPrefixes = ["/login", "/signup", "/sign-in"];
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
 	const { pathname } = request.nextUrl;
 
 	const isProtectedRoute = protectedPrefixes.some((prefix) =>
