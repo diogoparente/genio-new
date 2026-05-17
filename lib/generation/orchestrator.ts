@@ -65,16 +65,25 @@ export async function runGeneration(params: RunGenerationParams) {
 		const systemPrompt = buildSystemPrompt();
 		const userPrompt = buildUserPrompt(allSignals, niche, batchSize);
 
-		const output = await provider.generateStructured({
+		const result = await provider.generateStructured({
 			systemPrompt,
 			userPrompt,
 			schema: synthesizedOutputSchema,
+			expectedCount: batchSize,
 		});
+
+		if (result.discarded > 0) {
+			console.warn(
+				`[genio] Generation ${generationId}: ${result.discarded} ideas discarded by validation` +
+					(result.truncated ? " (output was truncated)" : "") +
+					(result.retried ? " (retry performed)" : ""),
+			);
+		}
 
 		// 4. Insert ideas and related data into DB
 		let totalConfidence = 0;
 
-		for (const synthIdea of output.ideas) {
+		for (const synthIdea of result.data.ideas) {
 			const ideaId = generateId();
 
 			// Insert the idea record
@@ -143,8 +152,8 @@ export async function runGeneration(params: RunGenerationParams) {
 
 		// 5. Mark generation complete with average confidence score
 		const avgConfidence =
-			output.ideas.length > 0
-				? totalConfidence / output.ideas.length
+			result.data.ideas.length > 0
+				? totalConfidence / result.data.ideas.length
 				: 0;
 
 		await db
@@ -152,7 +161,7 @@ export async function runGeneration(params: RunGenerationParams) {
 			.set({ status: "completed", confidence: avgConfidence })
 			.where(eq(ideaGenerations.id, generationId));
 
-		return { generationId, ideaCount: output.ideas.length };
+		return { generationId, ideaCount: result.data.ideas.length };
 	} catch (error) {
 		// 6. Mark generation as failed
 		await db

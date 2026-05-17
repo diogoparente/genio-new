@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useId } from "react";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
@@ -16,6 +17,7 @@ interface NavbarProps {
 
 export default function Navbar({ labels }: NavbarProps) {
   const pathname = usePathname();
+  const navbarId = useId();
 
   const navLinks = [
     { href: "/dashboard", label: labels?.generator ?? "Generator" },
@@ -25,10 +27,16 @@ export default function Navbar({ labels }: NavbarProps) {
 
   return (
     <nav className="sticky top-0 z-40 bg-[var(--color-neu-surface)] shadow-neu border-b border-[var(--neu-shadow-dark)] rounded-[var(--radius-neu)]">
-      <div className="max-w-6xl px-6 py-3 flex items-center justify-between">
+      <div
+        id={`navbar-links-${navbarId}`}
+        className="max-w-6xl px-6 py-3 flex items-center justify-between"
+      >
         <div className="flex items-center gap-1">
           {navLinks.map((link) => {
-            const isActive = pathname.startsWith(link.href);
+            const isActive =
+              link.href === "/dashboard"
+                ? pathname === "/dashboard"
+                : pathname.startsWith(link.href);
             return (
               <Link
                 key={link.href}
