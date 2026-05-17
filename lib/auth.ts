@@ -2,23 +2,12 @@ import { LibsqlDialect } from "@libsql/kysely-libsql";
 import type { BetterAuthOptions } from "better-auth";
 import { betterAuth } from "better-auth";
 import { nextCookies } from "better-auth/next-js";
+import { getTursoClient } from "@/lib/db/client";
 
 function createAuth() {
-	const dialect = (() => {
-		if (process.env.TURSO_DATABASE_URL && process.env.TURSO_AUTH_TOKEN) {
-			return new LibsqlDialect({
-				url: process.env.TURSO_DATABASE_URL,
-				authToken: process.env.TURSO_AUTH_TOKEN,
-			});
-		}
-		return null;
-	})();
-
-	if (!dialect) {
-		throw new Error(
-			"No database configured. Set TURSO_DATABASE_URL and TURSO_AUTH_TOKEN.",
-		);
-	}
+	const dialect = new LibsqlDialect({
+		client: getTursoClient(),
+	});
 
 	const authOptions = {
 		appName: "génio",

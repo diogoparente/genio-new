@@ -2,7 +2,7 @@ import { drizzle } from "drizzle-orm/libsql";
 import { createClient } from "@libsql/client";
 import * as schema from "./schema";
 
-function createDb() {
+function createClientAndDb() {
 	const url = process.env.TURSO_DATABASE_URL;
 	const authToken = process.env.TURSO_AUTH_TOKEN;
 
@@ -13,34 +13,40 @@ function createDb() {
 	}
 
 	const client = createClient({ url, authToken });
-	return drizzle(client, { schema });
+	const db = drizzle(client, { schema });
+	return { client, db };
 }
 
-let _db: ReturnType<typeof createDb> | null = null;
+let _state: ReturnType<typeof createClientAndDb> | null = null;
 
-function getDb() {
-	if (!_db) {
-		_db = createDb();
+function getState() {
+	if (!_state) {
+		_state = createClientAndDb();
 	}
-	return _db;
+	return _state;
 }
 
-// Lazy proxy: defers DB connection from module evaluation to first property access.
-// This allows Next.js build to succeed without a database connection.
-const dbProxy = new Proxy({} as ReturnType<typeof createDb>, {
+// Lazy proxy for the drizzle instance — defers DB connection from module
+// evaluation to first property access so Next.js build succeeds offline.
+const dbProxy = new Proxy({} as ReturnType<typeof createClientAndDb>["db"], {
 	get(_, prop, receiver) {
 		return Reflect.get(
-			getDb() as Record<string | symbol, unknown>,
+			getState().db as Record<string | symbol, unknown>,
 			prop,
 			receiver,
 		);
 	},
 	ownKeys() {
-		return Reflect.ownKeys(getDb() as object);
+		return Reflect.ownKeys(getState().db as object);
 	},
 	getOwnPropertyDescriptor(_, prop) {
-		return Reflect.getOwnPropertyDescriptor(getDb() as object, prop);
+		return Reflect.getOwnPropertyDescriptor(getState().db as object, prop);
 	},
 });
 
 export const db = dbProxy;
+
+/** Shared Turso client — reuse this when creating a Kysely dialect for Better Auth. */
+export function getTursoClient() {
+	return getState().client;
+}
